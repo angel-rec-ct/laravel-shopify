@@ -57,9 +57,11 @@ class IframeProtection
             ? $shop->name
             : '*.myshopify.com';
 
+        $customDomain = config('shopify-app.custom_url');
+
         $response->headers->set(
             'Content-Security-Policy',
-            "frame-ancestors https://$domain https://admin.shopify.com"
+            "frame-ancestors $customDomain https://$domain https://admin.shopify.com"
         );
 
         return $response;
